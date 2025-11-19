@@ -4,7 +4,7 @@ import 'core/theme/app_theme.dart';
 import 'features/main/presentation/pages/main_scaffold.dart';
 
 void main() {
-  // Initialize Dependency Injection
+  // Initialize Dependency Injection n
   final di = InjectionContainer();
   di.init();
 
