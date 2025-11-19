@@ -8,7 +8,7 @@
 .build/
 .vercel/
 vercel.json
-.github/
+# .github/ - تم إزالته للسماح برفع workflows
 .buildlog/
 .history
 .svn/
