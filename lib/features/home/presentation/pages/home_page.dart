@@ -7,6 +7,7 @@ import '../../../../core/widgets/header/search_bar.dart';
 import '../../../../core/widgets/header/header_icon_button.dart';
 import '../widgets/hero_banner.dart';
 import '../../../product/presentation/widgets/product_card.dart';
+import '../../../product_details/presentation/pages/product_details_page.dart';
 import '../widgets/promo_banner.dart';
 
 class HomePage extends StatefulWidget {
@@ -314,10 +315,27 @@ class _HomePageState extends State<HomePage> {
                                 child: ProductCard(
                                   product: product,
                                   onTap: () {
-                                    // Navigate to product detail
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => ProductDetailsPage(
+                                              product: product,
+                                            ),
+                                      ),
+                                    );
                                   },
                                   onAddToCart: () {
-                                    // Add to cart
+                                    // Navigate to product details to select options
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => ProductDetailsPage(
+                                              product: product,
+                                            ),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),
