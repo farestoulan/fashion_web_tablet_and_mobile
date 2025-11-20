@@ -29,6 +29,10 @@ jobs:
         run: |
           cat > build/web/vercel.json << 'EOF'
           {
+            "version": 2,
+            "buildCommand": "",
+            "installCommand": "",
+            "framework": null,
             "rewrites": [
               {
                 "source": "/(.*)",
@@ -63,9 +67,10 @@ jobs:
       - name: Deploy to Vercel
         run: |
           cd build/web
-          vercel --prod --yes --token "${{ secrets.VERCEL_TOKEN }}"
+          vercel --prod --yes --token "${{ secrets.VERCEL_TOKEN }}" --force
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL: 1
+          VERCEL_NO_BUILD: 1
 
