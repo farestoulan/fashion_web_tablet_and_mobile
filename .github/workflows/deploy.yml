@@ -25,6 +25,19 @@ jobs:
       - name: Build Flutter web
         run: flutter build web --release
 
+      - name: Create vercel.json for deployment
+        run: |
+          cat > build/web/vercel.json << 'EOF'
+          {
+            "rewrites": [
+              {
+                "source": "/(.*)",
+                "destination": "/index.html"
+              }
+            ]
+          }
+          EOF
+
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
