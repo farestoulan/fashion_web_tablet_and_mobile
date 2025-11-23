@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/utils/responsive_utils.dart';
+import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/utils/responsive_utils.dart';
 
-class MobileHomePage extends StatefulWidget {
-  const MobileHomePage({super.key});
+class HomeMobile extends StatefulWidget {
+  const HomeMobile({super.key});
 
   @override
-  State<MobileHomePage> createState() => _MobileHomePageState();
+  State<HomeMobile> createState() => _HomeMobileState();
 }
 
-class _MobileHomePageState extends State<MobileHomePage> {
+class _HomeMobileState extends State<HomeMobile> {
   final TextEditingController _searchController = TextEditingController();
   int _currentBannerIndex = 0;
   final PageController _bannerController = PageController();
@@ -168,7 +168,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
                       color:
                           _currentBannerIndex == index
                               ? AppColors.primary
-                              : Colors.white.withOpacity(0.5),
+                              : Colors.white.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -366,8 +366,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-                  Colors.white.withOpacity(0.95),
-                  Colors.white.withOpacity(0.7),
+                  Colors.white.withValues(alpha: 0.95),
+                  Colors.white.withValues(alpha: 0.7),
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.25, 0.5],

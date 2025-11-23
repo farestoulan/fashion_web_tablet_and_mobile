@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/responsive_utils.dart';
-import '../widgets/bottom_nav_bar.dart';
-import '../../../home/presentation/pages/adaptive_home_page.dart';
+import '../../widgets/bottom_nav_bar.dart';
+import 'package:test_project/features/home/presentation/pages/home_page.dart';
 
-class MainScaffold extends StatefulWidget {
-  const MainScaffold({super.key});
+class MainMobile extends StatefulWidget {
+  const MainMobile({super.key});
 
   @override
-  State<MainScaffold> createState() => _MainScaffoldState();
+  State<MainMobile> createState() => _MainMobileState();
 }
 
-class _MainScaffoldState extends State<MainScaffold> {
+class _MainMobileState extends State<MainMobile> {
   int _currentIndex = 0;
 
   // Pages for each tab
   final List<Widget> _pages = [
-    const AdaptiveHomePage(), // Changed to use AdaptiveHomePage
+    const HomePage(),
     const _PlaceholderPage(title: 'Categories'),
     const _PlaceholderPage(title: 'My Basket'),
     const _PlaceholderPage(title: 'Favourites'),
@@ -30,18 +29,12 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveUtils.isMobile(context);
-
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: _pages),
-      // Only show bottom navigation on mobile devices
-      bottomNavigationBar:
-          isMobile
-              ? AppBottomNavBar(
-                currentIndex: _currentIndex,
-                onTap: _onTabTapped,
-              )
-              : null,
+      bottomNavigationBar: AppBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
+      ),
     );
   }
 }

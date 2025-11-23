@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'core/di/injection_container.dart';
 import 'core/theme/app_theme.dart';
-import 'features/main/presentation/pages/main_scaffold.dart';
+import 'features/main/presentation/pages/main_page.dart';
 
 void main() {
   // Initialize Dependency Injection n
@@ -22,7 +22,7 @@ class FashionApp extends StatelessWidget {
       title: 'Fashion International Group',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const MainScaffold(),
+      home: const MainPage(),
     );
   }
 }

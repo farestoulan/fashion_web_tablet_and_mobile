@@ -30,9 +30,10 @@ class _CategoryItemState extends State<CategoryItem>
       duration: const Duration(milliseconds: 100),
       vsync: this,
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -72,16 +73,13 @@ class _CategoryItemState extends State<CategoryItem>
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: _buildCategoryIcon(),
-              ),
+              child: AspectRatio(aspectRatio: 1, child: _buildCategoryIcon()),
             ),
             const SizedBox(height: 8),
             Text(
@@ -89,10 +87,7 @@ class _CategoryItemState extends State<CategoryItem>
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -132,4 +127,3 @@ class _CategoryItemState extends State<CategoryItem>
     );
   }
 }
-

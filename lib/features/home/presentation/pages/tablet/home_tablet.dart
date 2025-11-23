@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/app_colors.dart';
 
-class TabletHomePage extends StatefulWidget {
-  const TabletHomePage({super.key});
+class HomeTablet extends StatefulWidget {
+  const HomeTablet({super.key});
 
   @override
-  State<TabletHomePage> createState() => _TabletHomePageState();
+  State<HomeTablet> createState() => _HomeTabletState();
 }
 
-class _TabletHomePageState extends State<TabletHomePage> {
+class _HomeTabletState extends State<HomeTablet> {
   final TextEditingController _searchController = TextEditingController();
   int _currentBannerIndex = 0;
   final PageController _bannerController = PageController();
@@ -376,7 +376,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          Colors.black.withOpacity(0.6),
+                          Colors.black.withValues(alpha: 0.6),
                           Colors.transparent,
                         ],
                       ),
@@ -409,7 +409,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
                         Text(
                           'Shop all of our brand collections\nwith exclusive discounts',
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             fontSize: 15,
                             height: 1.5,
                           ),
@@ -460,7 +460,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
                       color:
                           _currentBannerIndex == index
                               ? Colors.white
-                              : Colors.white.withOpacity(0.5),
+                              : Colors.white.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -549,7 +549,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -559,7 +559,11 @@ class _TabletHomePageState extends State<TabletHomePage> {
           children: [
             // Background icon
             Center(
-              child: Icon(icon, size: 48, color: Colors.white.withOpacity(0.3)),
+              child: Icon(
+                icon,
+                size: 48,
+                color: Colors.white.withValues(alpha: 0.3),
+              ),
             ),
             // "fig" logo
             Positioned(
@@ -629,7 +633,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -784,7 +788,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+            colors: [Colors.black.withValues(alpha: 0.7), Colors.transparent],
           ),
         ),
         padding: const EdgeInsets.all(20),
@@ -883,7 +887,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+              colors: [Colors.transparent, Colors.black.withValues(alpha: 0.7)],
             ),
           ),
           alignment: Alignment.center,
@@ -926,7 +930,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
           Text(
             'Get all the latest information on Events, Sales and Offers.',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               fontSize: 14,
             ),
             textAlign: TextAlign.center,
