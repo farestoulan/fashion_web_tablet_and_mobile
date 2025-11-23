@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildCategoryButton('Women'),
+        _buildCategoryButton('Women\'s'),
         const SizedBox(width: 40),
         _buildCategoryButton('Men'),
         const SizedBox(width: 40),
