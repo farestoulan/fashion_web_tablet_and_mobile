@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/core/router/app_router.dart';
 import '../../../../product/domain/entities/product.dart';
 import '../../../../product/domain/usecases/get_new_arrivals.dart';
 import '../../../../brand/domain/usecases/get_all_brands.dart';
@@ -315,26 +316,31 @@ class _HomeWebState extends State<HomeWeb> {
                                 child: ProductCard(
                                   product: product,
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder:
-                                            (context) => ProductDetailsPage(
-                                              product: product,
-                                            ),
-                                      ),
+                                    debugPrint(
+                                      'onTap***********: ${product.id}',
                                     );
+                                    AppRouter.goToProductDetails(
+                                      context,
+                                      product,
+                                    );
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder:
+                                    //         (context) => ProductDetailsPage(
+                                    //           product: product,
+                                    //         ),
+                                    //   ),
+                                    // );
                                   },
                                   onAddToCart: () {
                                     // Navigate to product details to select options
-                                    Navigator.push(
+                                    debugPrint(
+                                      'onTap***********: ${product.id}',
+                                    );
+                                    AppRouter.goToProductDetails(
                                       context,
-                                      MaterialPageRoute(
-                                        builder:
-                                            (context) => ProductDetailsPage(
-                                              product: product,
-                                            ),
-                                      ),
+                                      product,
                                     );
                                   },
                                 ),

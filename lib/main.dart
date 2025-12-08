@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'core/di/injection_container.dart';
 import 'core/theme/app_theme.dart';
-import 'features/main/presentation/pages/main_page.dart';
+import 'core/router/app_router.dart';
 
 void main() {
-  // Initialize Dependency Injection n
+  // Initialize Dependency Injection
   final di = InjectionContainer();
   di.init();
 
@@ -18,11 +18,11 @@ class FashionApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Fashion International Group',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const MainPage(),
+      routerConfig: AppRouter.router,
     );
   }
 }
