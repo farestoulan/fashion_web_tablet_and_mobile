@@ -1,7 +1,7 @@
 (function () {
   // === الإعدادات ===
   // ضع رابط الشات بوت الخاص بك هنا
-  var FLUTTER_CHATBOT_URL = "https://chat-bot-three-tan.vercel.app/"; // Put your chatbot URL here
+  var FLUTTER_CHATBOT_URL = "https://alwidad-chatbot.vercel.app/"; // Put your chatbot URL here
 
   // اختياري: تنفيذ أكشن عند الضغط على الزر العائم
   // استخدم: window.FlutterChatbotWidget.onButtonClick = function() { ... };
@@ -9,13 +9,25 @@
   window.FlutterChatbotWidget = window.FlutterChatbotWidget || {};
 
   // === استدعاء API الشات عند الضغط على الزر العائم ===
-  var CHAT_API_URL = "https://by4snzvvns5rnyvs3eoemt7neu0amywq.lambda-url.us-east-1.on.aws/api/chat/stream";
+  var CHAT_API_URL = "https://3fhnqxqrgtaajgebpjgzeo4pbi0hmrxg.lambda-url.us-east-1.on.aws/api/chat/stream";
   var CHAT_API_INITIAL_QUERY = "هاي"; // الرسالة الأولى المرسلة عند فتح الشات
   var CALL_CHAT_API_ON_BUTTON_CLICK = true; // true = استدعاء الـ API عند الضغط على الزر
   var CHAT_API_ONCE_ONLY = true; // true = تنفيذ الاستدعاء مرة واحدة فقط (أول ضغطة فقط)
   var CHAT_API_DEBUG = true; // true = طباعة رسائل في Console للتحقق من أن الاستدعاء يعمل
 
   var chatApiAlreadyCalled = false; // تتبع هل تم استدعاء الـ API مسبقاً
+
+  // === استقبال بيانات المستخدم من الـ iframe وحفظها في sessionStorage ===
+  window.addEventListener("message", function (event) {
+    try {
+      var data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+      if (data && data.type === "chatbot-user-info") {
+        sessionStorage.setItem("chatbot_user_name", data.name);
+        sessionStorage.setItem("chatbot_user_contact", data.contact);
+        if (CHAT_API_DEBUG) console.log("[Chatbot Widget] تم حفظ بيانات المستخدم في sessionStorage:", data.name, data.contact);
+      }
+    } catch (e) {}
+  });
 
   function callChatStreamAPI(query) {
     if (!CHAT_API_URL || !CALL_CHAT_API_ON_BUTTON_CLICK) return;
@@ -170,6 +182,23 @@
   iframe.style.border = "none";
   iframe.style.width = "100%";
   iframe.style.height = "100%";
+
+  // عند تحميل الـ iframe، إرسال بيانات المستخدم المحفوظة إن وُجدت
+  iframe.addEventListener("load", function () {
+    var savedName = sessionStorage.getItem("chatbot_user_name");
+    var savedContact = sessionStorage.getItem("chatbot_user_contact");
+    if (savedName && savedContact) {
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          type: "chatbot-saved-user-info",
+          name: savedName,
+          contact: savedContact
+        }),
+        "*"
+      );
+      if (CHAT_API_DEBUG) console.log("[Chatbot Widget] تم إرسال بيانات المستخدم المحفوظة للـ iframe:", savedName, savedContact);
+    }
+  });
   
   // === iframe Wrapper ===
   var iframeWrapper = document.createElement("div");
